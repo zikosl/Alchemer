@@ -4,8 +4,9 @@ export const FETCH_SWAP_TRANSACTION_LIST_SUCCESS = "FETCH_SWAP_TRANSACTION_LIST_
 export const FETCH_SWAP_TRANSACTION_LIST_FAIL = "FETCH_SWAP_TRANSACTION_LIST_FAIL";
 
 // Action Creators
-export const fetchSwapTransactionListRequest = () => ({
+export const fetchSwapTransactionListRequest = (data = {}) => ({
   type: FETCH_SWAP_TRANSACTION_LIST_REQUEST,
+  payload: data
 });
 
 export const fetchSwapTransactionListSuccess = (data) => ({

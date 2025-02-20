@@ -4,10 +4,12 @@ import { svg2img } from "../../utils/randomAvatar";
 import { green } from "@mui/material/colors";
 import { removeW } from "../../utils/funcs";
 import "./style.css";
+import { fetchSwapTransactionListRequest } from "../../redux/actions/fetchSwapTrasactionAction";
+import { useDispatch } from "react-redux";
 
-const TokenRow = ({ data }) => {
+const TokenRow = ({ data, onClick }) => {
   const [imageExists, setImageExists] = useState(false);
-
+  const dispatch = useDispatch();
   // useEffect(() => {
   //   checkImg(
   //     `https://assets.thetatoken.org/tokens/${data.symbol.toLowerCase()}.png`
@@ -21,8 +23,13 @@ const TokenRow = ({ data }) => {
   //     });
   // }, [data.symbol]);
 
+  const setData = () => {
+    console.log(data)
+    onClick(data)
+    dispatch(fetchSwapTransactionListRequest({ pair: data?.id }))
+  }
   return (
-    <tr>
+    <tr style={{ cursor: "pointer" }} onClick={setData}>
       <td
         style={{
           display: "flex",
@@ -63,9 +70,9 @@ const TokenRow = ({ data }) => {
           {"+" +
             (data.tradeVolumeETH * 1
               ? (
-                  ((data.volume24HrsETH * 1) / (data.tradeVolumeETH * 1)) *
-                  100
-                ).toFixed(2)
+                ((data.volume24HrsETH * 1) / (data.tradeVolumeETH * 1)) *
+                100
+              ).toFixed(2)
               : "0") +
             "%"}
         </span>

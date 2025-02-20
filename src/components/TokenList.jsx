@@ -30,13 +30,14 @@ const TokenList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     // Dispatch the action to fetch token data
+
     dispatch(fetchTokenListRequest());
   }, [fetchTokenListRequest]);
 
   const tokenList = useSelector((state) => state.tokenReducer.tokenList);
   const loading = useSelector((state) => state.tokenReducer.loading);
   const error = useSelector((state) => state.tokenReducer.error);
-
+  console.log(tokenList)
   const [filteredTokenList, setFilteredTokenList] = useState([...tokenList]);
 
   const sortedTokenList = tokenList.sort(
@@ -105,7 +106,6 @@ const TokenList = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
   return (
     <div className="tokenlist-background font-header">
       <img

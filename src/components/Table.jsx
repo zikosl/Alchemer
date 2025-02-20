@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchSwapTransactionListRequest } from "../redux/actions/fetchSwapTrasactionAction";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -89,8 +89,8 @@ const Table = () => {
                   {rowData.type !== "Swap"
                     ? rowData.type
                     : rowData.amount0In * 1
-                    ? "Buy"
-                    : "Sell"}
+                      ? "Buy"
+                      : "Sell"}
                 </td>
                 <td>{`${checkTokenSymbol(
                   rowData.symbol0
@@ -116,6 +116,7 @@ const Table = () => {
             ))}
         </tbody>
       </table>
+
     </div>
   );
 };
